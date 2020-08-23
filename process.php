@@ -15,6 +15,7 @@
 		$selected_choice = $_POST['choice'];
 		$next = $number+1;
 		$_SESSION['choice']=$selected_choice;
+		$duration=$_POST['duration'];
 		
 		
 	
@@ -52,7 +53,7 @@
 				header("Location: final.php?");
 				exit();
 			} else {
-				header("Location: questions.php?type=php& n=".$next);
+				header("Location: questions.php?type=php&duration=".$duration."&n=".$next);
 			}
 		}
 		
@@ -84,7 +85,7 @@
 				header("Location: final.php");
 				exit();
 			} else {
-				header("Location: questions.php?type=html& n=".$next);
+				header("Location: questions.php?type=html&duration=".$duration."&n=".$next);
 			}
 		}
 		
@@ -114,7 +115,7 @@
 				header("Location: final.php");
 				exit();
 			} else {
-				header("Location: questions.php?type=css& n=".$next);
+				header("Location: questions.php?type=css&duration=".$duration."&n=".$next);
 			}
 		}
 		// php check condition end
@@ -144,7 +145,7 @@
 				header("Location: final.php");
 				exit();
 			} else {
-				header("Location: questions.php?type=javascript& n=".$next);
+				header("Location: questions.php?type=javascript&duration=".$duration."&n=".$next);
 			}
 		}
 		if($quiz_type=='python'){
@@ -172,7 +173,7 @@
 				header("Location: final.php");
 				exit();
 			} else {
-				header("Location: questions.php?type=python& n=".$next);
+				header("Location: questions.php?type=python&duration=".$duration."&n=".$next);
 			}
 		}
 
@@ -202,7 +203,7 @@
 				header("Location: final.php");
 				exit();
 			} else {
-				header("Location: questions.php?type=c& n=".$next);
+				header("Location: questions.php?type=c&duration=".$duration."&n=".$next);
 			}
 		}
 		if($quiz_type=='apptitude'){
@@ -230,11 +231,12 @@
 				header("Location: final.php");
 				exit();
 			} else {
-				header("Location: questions.php?type=apptitude& n=".$next);
+				header("Location: questions.php?type=apptitude&duration=".$duration."&n=".$next);
 			}
 		}
 	
 	}
+
 
         
         
