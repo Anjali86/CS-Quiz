@@ -1,9 +1,28 @@
+<?php session_start(); ?>
 <?php include 'connect.php';?>
 <?php if(isset($_COOKIE["user"])) {
     $name=$_COOKIE["user"];
 } else{
     $name=" ";
 }?>
+
+<?php include 'connect.php';?>
+<?php 
+$query = "SELECT *FROM duration";
+//Get result
+$result = $mysqli->query($query) or die($mysqli->error.__LINE__);
+while($row=mysqli_fetch_array($result))
+{
+    $duration=$row["duration"];
+}
+$_SESSION["duration"]=$duration;
+$_SESSION["start_time"]=date("y-m-d H:i:s");
+
+$end_time=date('y-m-d H:i:s',  strtotime('+'.$_SESSION["duration"].'minutes', strtotime($_SESSION["start_time"]) ));
+
+$_SESSION["end_time"]=$end_time;
+
+           ?>
 <?php 
 
 $number = (int) $_GET['n'];
@@ -152,22 +171,33 @@ $number = (int) $_GET['n'];
     
     
         </span>. If Yes, click the button below to start your Quiz.</p>
+
+        <div class="container"> 
+<div class="row">
+<div class="col-lg-12">
+<h5 class="info"><span class="question_no">Number of Questions: 20 </span> <span class="line"> | </span> <span class="time">Time: 20 Minutes  </span>
+        </h5>
+        <h5 class="marking"> <span> Each question carry 1 mark each, no negative marking   </span>    </h5>
+        </div>
+
+        </div>
+        </div>
     <p class="best"> All The Best <i class="far fa-thumbs-up"></i></p>
     <?php   if($number==1){
-              echo " <a href='questions.php?n=1&type=php' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
+              echo " <a href='questions.php?n=1&type=php&duration=$duration' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
    <?php   if($number==2){
-              echo " <a href='questions.php?n=1&type=html' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
+              echo " <a href='questions.php?n=1&type=html&duration=$duration' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
               <?php   if($number==3){
-              echo " <a href='questions.php?n=1&type=css' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
+              echo " <a href='questions.php?n=1&type=css&duration=$duration' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
 <?php   if($number==4){
-              echo " <a href='questions.php?n=1&type=javascript' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
+              echo " <a href='questions.php?n=1&type=javascript&duration=$duration' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
 
 <?php   if($number==5){
-              echo " <a href='questions.php?n=1&type=python' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
+              echo " <a href='questions.php?n=1&type=python&duration=$duration' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
               <?php   if($number==6){
-              echo " <a href='questions.php?n=1&type=c' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
+              echo " <a href='questions.php?n=1&type=c&duration=$duration' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
     <?php   if($number==8){
-              echo " <a href='questions.php?n=1&type=apptitude' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
+              echo " <a href='questions.php?n=1&type=apptitude&duration=$duration' class='button'>Start Quizz <i class='fa fa-angle-double-right btn-right'> </i></a> ";  } ?>
 
 
 </div>
