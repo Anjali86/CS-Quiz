@@ -5,6 +5,8 @@
 
 $number = (int) $_GET['n'];
 $type= $_GET['type'];
+$duration= $_GET['duration'];
+$_SESSION["duration"]=$duration;
 
 // Select particular question
 if($type=='php'){
@@ -145,6 +147,7 @@ if($type=='javascript'){
     rel="stylesheet">
     <title>PHP Quizzer</title>
     <link rel="stylesheet"  href="css/question.css">
+   
 </head>
 <body>
     <header>
@@ -176,8 +179,18 @@ elseif($type=='apptitude'){
 }
            
            ?>
-           </h1>
-       <form method="post" action="submit.php">
+ </h1>
+ 
+ 
+<script src="countdown.js"> 
+
+           </script>
+          
+           <h5 class="timmer" id="timmer">
+
+ 
+        </h5>
+       <form method="post" action="submit.php" id="form2">
         <button type="submit" class="btn  button_submit" name="submit">Submit</button>
         <!-- <input type="hidden" name="number" value="<?php echo $number; ?>" /> -->
 </form> 
@@ -207,7 +220,7 @@ elseif($type=='apptitude'){
                ?> 
                
                 <div class="answer">
-                <form method="post" action="process.php" >
+                <form method="post" action="process.php" name="form" id="form1">
                     <ul class="choices">
                     
                             
@@ -220,6 +233,7 @@ elseif($type=='apptitude'){
         
         <button  id="myBtn" type="submit" class="btn button"  name="submit">Next</button>
         <input type="hidden" name="number" value="<?php echo $number; ?>" />
+        <input type="hidden" name="duration" value="<?php echo $_SESSION["duration"];?>" />
         <input type="hidden" name="type" value="<?php if($type=='php'){ echo 'php';} 
         elseif($type=='html'){
             echo 'html';
